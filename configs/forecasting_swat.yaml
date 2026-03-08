@@ -1,0 +1,40 @@
+# Forecasting experiment configuration — dummy SWaT dataset
+# Run: python benchmarks/run_benchmark.py --config configs/forecasting_swat.yaml --task forecasting
+# No download required — uses synthetic SWaT-like data.
+
+experiment:
+  name: SWaT_forecasting_benchmark
+  dataset_name: swat_dummy
+  pred_len: 24
+
+dataset:
+  name: swat_dummy
+  seq_len: 96
+  pred_len: 24
+  batch_size: 32
+  num_features: 51
+
+training:
+  learning_rate: 0.001
+  epochs: 10
+  checkpoint_dir: checkpoints/
+  save_predictions: false
+
+models:
+  LSTM:
+    hidden_dim: 64
+    num_layers: 2
+    out_features: 24
+
+  PatchTST:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    patch_len: 16
+    stride: 8
+    pred_len: 24
+
+  DLinear:
+    kernel_size: 25
+    individual: true
+    pred_len: 24

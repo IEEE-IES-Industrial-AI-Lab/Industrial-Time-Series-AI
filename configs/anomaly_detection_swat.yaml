@@ -1,0 +1,31 @@
+# Anomaly detection experiment configuration — dummy SWaT dataset
+# Run: python benchmarks/run_benchmark.py --config configs/anomaly_detection_swat.yaml --task anomaly
+# No download required — uses synthetic SWaT-like data.
+
+experiment:
+  name: SWaT_anomaly_detection_benchmark
+  dataset_name: swat_dummy
+
+dataset:
+  name: swat_dummy
+  window_size: 100
+  step_size: 1
+  batch_size: 32
+  num_features: 51
+  num_samples: 10000
+  anomaly_ratio: 0.05
+
+training:
+  learning_rate: 0.001
+  epochs: 5
+  checkpoint_dir: checkpoints/
+  save_scores: true
+  scores_dir: benchmarks/results/
+
+model:
+  type: LSTMAutoencoder
+  hidden_dim: 64
+  num_layers: 2
+  # Increase for deeper representation:
+  # hidden_dim: 128
+  # num_layers: 3

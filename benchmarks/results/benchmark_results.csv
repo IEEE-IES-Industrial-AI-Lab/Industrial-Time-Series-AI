@@ -1,0 +1,7 @@
+task,model,dataset,pred_len,params,train_time_s,ROC-AUC,F1,F1-PA,Precision,Recall
+anomaly_detection,LSTMAutoencoder,SWaT_dummy,-,108316,6.8,0.9999,0.9981,1.0,1.0,0.9963
+forecasting,LSTM,swat_dummy,24,142792,3.4,0.9991,0.7964,112.45,188.34
+forecasting,TCN,swat_dummy,24,134952,3.3,0.9989,0.7962,107.57,191.33
+forecasting,Transformer,swat_dummy,24,149832,3.1,1.0006,0.7976,132.5,180.24
+forecasting,PatchTST,swat_dummy,24,117976,9.9,0.9993,0.7964,115.19,187.43
+forecasting,DLinear,swat_dummy,24,237456,6.5,1.0865,0.8667,370.56,150.57

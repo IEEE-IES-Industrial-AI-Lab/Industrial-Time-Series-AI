@@ -1,0 +1,55 @@
+# Forecasting experiment configuration — ETTh1 dataset
+# Run: python benchmarks/run_benchmark.py --config configs/forecasting_ett.yaml --task forecasting
+
+experiment:
+  name: ETTh1_forecasting_benchmark
+  dataset_name: ETTh1
+  pred_len: 96
+
+dataset:
+  name: ETTh1
+  seq_len: 96
+  pred_len: 96
+  batch_size: 32
+  # data_path: datasets/raw/ETT/ETTh1.csv  # uncomment after download
+
+training:
+  learning_rate: 0.001
+  epochs: 20
+  checkpoint_dir: checkpoints/
+  save_predictions: true
+  predictions_dir: benchmarks/results/
+
+models:
+  LSTM:
+    hidden_dim: 64
+    num_layers: 2
+    dropout: 0.1
+    out_features: 96
+
+  TCN:
+    num_channels: [32, 64, 64]
+    kernel_size: 3
+    dropout: 0.1
+    out_features: 96
+
+  Transformer:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    dim_feedforward: 128
+    dropout: 0.1
+    out_features: 96
+
+  PatchTST:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    patch_len: 16
+    stride: 8
+    pred_len: 96
+
+  DLinear:
+    kernel_size: 25
+    individual: true
+    pred_len: 96
